@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Flight Finder',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Color(0xFF2367B4),
       ),
       home: Homepage(),
     );
