@@ -1,7 +1,7 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/custom_elevated_button.dart';
-import 'package:flightfinder/screens/query_flights_screen.dart';
+import 'package:flightfinder/screens/list_flights_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -20,7 +20,7 @@ class Homepage extends StatelessWidget {
             // -----------------------------------------------------------------
             Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 22.0, horizontal: 8.0),
+                  const EdgeInsets.symmetric(vertical: 32.0, horizontal: 8.0),
               child: Column(
                 children: [
                   Text(
@@ -67,14 +67,14 @@ class Homepage extends StatelessWidget {
                       children: [
                         CustomElevatedButton(
                           label: "Ready to fly!",
-                          bgColor: Colors.white,
-                          textColor: Colors.black87,
+                          bgColor: Color(0xFF804004),
+                          textColor: Colors.white,
                           onPressed: () => Navigator.push(
                             context,
                             PageTransition(
-                              type: PageTransitionType.fade,
-                              child: QueryFlightsScreen(),
-                            ),
+                                type: PageTransitionType.fade,
+                                // child: QueryFlightsScreen(),
+                                child: ListFlightsScreen()),
                           ),
                         )
                       ],

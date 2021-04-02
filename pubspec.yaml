@@ -23,8 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dio: ^4.0.0 # Http client
   flare_flutter: ^3.0.0 # Flare animations
-  page_transition: ^1.1.7+6 # This package gives you beautiful page transitions.
+  flutter_riverpod: ^0.13.1+1 # State management
+  json_annotation: ^4.0.1 # JSON serialization and deserialization
+  json_serializable: ^4.1.0 # Handle JSON
+  page_transition: ^1.1.7+6 # Page Transitions
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -34,6 +38,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.12.1 # Generate files
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,3 +1,5 @@
+import 'package:flightfinder/components/custom_dialog.dart';
+import 'package:flightfinder/components/menu.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -11,7 +13,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(color: Colors.black87),
       automaticallyImplyLeading: false,
       leading: isHomepage == true
           ? null
@@ -23,10 +24,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 6.0),
           child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.menu,
-            ),
+            onPressed: () => CustomDialog(title: 'MENU', content: Menu())
+                .showAlertDialog(context),
+            icon: Icon(Icons.menu),
           ),
         ),
       ],
