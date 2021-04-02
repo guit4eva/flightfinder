@@ -1,5 +1,5 @@
 name: flightfinder
-description: A new Flutter project.
+description: A flutter app that displays local flight information from https://aviationstack.com
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flare_flutter: ^3.0.0 # Flare animations
+  page_transition: ^1.1.7+6 # This package gives you beautiful page transitions.
 
 
   # The following adds the Cupertino Icons font to your application.
