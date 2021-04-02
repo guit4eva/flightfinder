@@ -13,7 +13,7 @@ A flutter app that displays local flight information from https://aviationstack.
 
 - [ ] Implement fake data (dummy_flight_data.json) for testing
 
-- [ ] Fake/real data toggle function
+- [X] Fake/real data toggle function
 
 - [ ] Flight finder screen (including arrival and destination airport dropdowns)
 

@@ -1,4 +1,7 @@
 import 'package:flightfinder/components/custom_app_bar.dart';
+// =============================================================================
+// Query for flights via arrival and departure selects
+// =============================================================================
 import 'package:flutter/material.dart';
 
 class QueryFlightsScreen extends StatelessWidget {
