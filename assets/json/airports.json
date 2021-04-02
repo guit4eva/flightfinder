@@ -1,0 +1,38 @@
+[
+    {
+        "airport_name": "Cape Town International",
+        "city_iata_code": "CPT"
+    },
+    {
+        "airport_name": "Durban International",
+        "city_iata_code": "DUR"
+    },
+    {
+        "airport_name": "East London",
+        "city_iata_code": "ELS"
+    },
+    {
+        "airport_name": "Grand Central",
+        "city_iata_code": "JNB"
+    },
+    {
+        "airport_name": "George",
+        "city_iata_code": "GRJ"
+    },
+    {
+        "airport_name": "Lanseria",
+        "city_iata_code": "JNB"
+    },
+    {
+        "airport_name": "OR Tambo International",
+        "city_iata_code": "JNB"
+    },
+    {
+        "airport_name": "Port Elizabeth",
+        "city_iata_code": "PLZ"
+    },
+    {
+        "airport_name": "Virginia",
+        "city_iata_code": "DUR"
+    }
+]
