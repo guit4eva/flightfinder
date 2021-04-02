@@ -1,9 +1,12 @@
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(),
       body: Center(
         child: Column(
           children: [
@@ -33,9 +36,13 @@ class Homepage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // TODO: Insert image of plane
-                  Placeholder(
-                    fallbackHeight: 100.0,
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    height: 100,
+                    child: FlareActor("assets/flares/plane.flr",
+                        alignment: Alignment.center,
+                        fit: BoxFit.contain,
+                        animation: "play"),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width / 1.4,
