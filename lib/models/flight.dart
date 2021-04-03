@@ -27,15 +27,17 @@ class Flight {
     if (data == null) {
       return null;
     }
+    print(data);
     return Flight(
-        name: data['airline']['name'],
-        number: data['flight']['number'],
-        depAirport: data['departure']['airport'],
-        depAirportIata: data['departure']['iata'],
-        arrAirport: data['arrival']['airport'],
-        arrAirportIata: data['arrival']['iata'],
-        depTime: DateTime.parse(data['departure']['scheduled']),
-        arrTime: DateTime.parse(data['arrival']['scheduled']),
-        icao: data['airline']['icao']);
+      name: data['airline']['name'],
+      number: data['flight']['number'],
+      depAirport: data['departure']['airport'],
+      depAirportIata: data['departure']['iata'],
+      arrAirport: data['arrival']['airport'],
+      arrAirportIata: data['arrival']['iata'],
+      depTime: DateTime.parse(data['departure']['scheduled']),
+      arrTime: DateTime.parse(data['arrival']['scheduled']),
+      icao: data['airline']['icao'],
+    );
   }
 }

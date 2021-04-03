@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   dio: ^4.0.0 # Http client
+  intl: ^0.17.0 # Date Formatting
   flare_flutter: ^3.0.0 # Flare animations
   flutter_riverpod: ^0.13.1+1 # State management
   json_annotation: ^4.0.1 # JSON serialization and deserialization
@@ -53,8 +54,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    # Media
     - assets/img/general/
     - assets/flares/
+    # JSON
+    - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

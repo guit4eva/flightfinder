@@ -11,6 +11,7 @@ void main() {
   );
 }
 
+// toggle between test and production mode
 final isTestMode = ChangeNotifierProvider<AppMode>((ref) => AppMode());
 
 class MyApp extends StatelessWidget {
