@@ -1,3 +1,3 @@
 abstract class Api {
-  Future<List<dynamic>> getFlights({docLimit, offset});
+  Future<List<dynamic>> getFlights({int docLimit, int offset});
 }

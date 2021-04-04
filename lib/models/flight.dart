@@ -27,7 +27,6 @@ class Flight {
     if (data == null) {
       return null;
     }
-    print(data);
     return Flight(
       name: data['airline']['name'],
       number: data['flight']['number'],
