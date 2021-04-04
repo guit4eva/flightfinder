@@ -11,13 +11,13 @@ A flutter app that displays local flight information from https://aviationstack.
 - [ ] Displays flight routes on a map.
 ## To Do
 
-- [ ] Implement fake data (dummy_flight_data.json) for testing
+- [X] Implement fake data (dummy_flight_data.json) for testing
 
 - [X] Fake/real data toggle function
 
 - [ ] Flight finder screen (including arrival and destination airport dropdowns)
 
-- [ ] Flights list screen with infinite scroll
+- [X] Flights list screen with infinite scroll
 
 - [ ] Flight information screen (inlcuding airplane info, airports details and airlines info)
 
