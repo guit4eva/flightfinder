@@ -25,9 +25,6 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
   @override
   void initState() {
     super.initState();
-    // _api.getFlights(_limit, _offset);
-    // fetch(_limit, _offset);
-    // Update data when bottom of listview is reached
     _scrollController.addListener(() {
       double maxScroll = _scrollController.position.maxScrollExtent;
       double currentScroll = _scrollController.position.pixels;
@@ -37,7 +34,7 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
         setState(() {
           _isLoading = true;
         });
-
+        // Simulate network loading times
         Future.delayed(Duration(seconds: 1), () {
           setState(() {
             _offset = _offset + _docLimit;
@@ -60,15 +57,20 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
             padding: const EdgeInsets.all(8.0),
             child: FutureBuilder<List<dynamic>>(
               future: _appMode.apiToUse.getFlights(
-                  currentList: _currentFlightList,
-                  docLimit: _docLimit,
-                  offset: _offset,
-                  callback: _callback),
+                currentList: _currentFlightList,
+                docLimit: _docLimit,
+                offset: _offset,
+                callback: _callback,
+                // TODO: Replace placeholder values below
+                departureAirport: 'JNB',
+                arrivalAirport: 'CPT',
+              ),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting &&
                     !_hasInitialised)
                   return Center(child: Text("Finding flights..."));
-                if (!snapshot.hasData) return Text("Nothing here...");
+                if (!snapshot.hasData)
+                  return Center(child: Text("Nothing here..."));
                 _hasInitialised = true;
                 return Column(
                   children: [

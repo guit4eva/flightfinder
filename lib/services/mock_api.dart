@@ -12,11 +12,13 @@ class MockApi implements Api {
     int docLimit,
     int offset,
     Function callback,
+    String departureAirport,
+    String arrivalAirport,
   }) async {
-    bool _noMoreDataAvailable = false;
     docLimit = docLimit ?? 1;
     offset = offset ?? 1;
     currentList = currentList ?? [];
+    int docsToFetch;
     // -------------------------------------------------------------------------
     // Debug information
     // -------------------------------------------------------------------------
@@ -34,22 +36,19 @@ class MockApi implements Api {
     // ---------------------------------------------------------------------------
     // Decode JSON
     // ---------------------------------------------------------------------------
-    List<dynamic> _flights = jsonDecode(_json)['data'];
-    if (offset + docLimit > _flights.length) _noMoreDataAvailable = true;
+    List<dynamic> _flights = await jsonDecode(_json)['data'];
+    docsToFetch = offset + docLimit > _flights.length
+        ? _flights.length - offset
+        : offset + docLimit;
+
     // -------------------------------------------------------------------------
     // Add flight data to currentList
     // -------------------------------------------------------------------------
-    if (_noMoreDataAvailable) {
-      for (var i = offset; i < _flights.length - offset; i++) {
-        currentList.add(await _flights[i]);
-      }
-    } else {
-      for (var i = offset; i <= offset + docLimit; i++) {
-        currentList.add(await _flights[i]);
-      }
+    for (var i = offset; i < docsToFetch; i++) {
+      currentList.add(_flights[i]);
     }
 
-    callback(currentList, _noMoreDataAvailable);
+    callback(currentList, docsToFetch < docLimit);
     return currentList;
   }
 }
