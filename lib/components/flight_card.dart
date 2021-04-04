@@ -83,7 +83,7 @@ class FlightCard extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.fade,
-                child: ViewFlight(
+                child: ViewFlightScreen(
                   flight: flight,
                 ),
               ),

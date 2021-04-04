@@ -1,10 +1,13 @@
+// =============================================================================
+// Display detailed flight information (single screen)
+// =============================================================================
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/elements/styles.dart';
 import 'package:flightfinder/models/flight.dart';
 import 'package:flutter/material.dart';
 
-class ViewFlight extends StatelessWidget {
-  const ViewFlight({
+class ViewFlightScreen extends StatelessWidget {
+  const ViewFlightScreen({
     Key key,
     @required this.flight,
   }) : super(key: key);
