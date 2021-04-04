@@ -2,7 +2,7 @@
 // Display Flight Information in List View
 // =============================================================================
 import 'package:flightfinder/models/flight.dart';
-import 'package:flightfinder/screens/view_flight.dart';
+import 'package:flightfinder/screens/view_flight_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
