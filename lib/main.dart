@@ -1,3 +1,8 @@
+// =============================================================================
+// NOTES:
+//
+//  - To switch between Mock and Real API, use toggle button in the menu
+// =============================================================================
 import 'package:flightfinder/models/app_mode.dart';
 import 'package:flightfinder/screens/homepage.dart';
 import 'package:flutter/material.dart';
