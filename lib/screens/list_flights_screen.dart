@@ -4,12 +4,17 @@
 
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/flight_card.dart';
-import 'package:flightfinder/main.dart';
+import 'package:flightfinder/misc/globals.dart';
+import 'package:flightfinder/misc/nice_print.dart';
 import 'package:flightfinder/models/flight.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ListFlightsScreen extends StatefulWidget {
+  const ListFlightsScreen({
+    Key key,
+  }) : super(key: key);
+
   @override
   _ListFlightsScreenState createState() => _ListFlightsScreenState();
 }
@@ -21,7 +26,7 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
   bool _isLoading = false;
   bool _hasInitialised = false;
   bool _endOfData = false;
-  List<dynamic> _currentFlightList = [];
+  List<Flight> _currentFlightList = [];
   @override
   void initState() {
     super.initState();
@@ -35,11 +40,12 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
           _isLoading = true;
         });
         // Simulate network loading times
+        // TODO: Remove in production or move to testing class
         Future.delayed(Duration(seconds: 1), () {
           setState(() {
             _offset = _offset + _docLimit;
             _isLoading = false;
-            print('docLimit is $_docLimit, offset is $_offset');
+            Misc().easyDebug({'docLimit': _docLimit, 'offset': _offset});
           });
         });
       }
@@ -53,49 +59,50 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
       body: Consumer(
         builder: (context, watch, child) {
           final _appMode = watch(isTestMode);
+          final _myFlight = watch(selectedFlightDetails);
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FutureBuilder<List<dynamic>>(
-              future: _appMode.apiToUse.getFlights(
-                currentList: _currentFlightList,
-                docLimit: _docLimit,
-                offset: _offset,
-                callback: _callback,
-                // TODO: Replace placeholder values below
-                departureAirport: 'JNB',
-                arrivalAirport: 'CPT',
-              ),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting &&
-                    !_hasInitialised)
-                  return Center(child: Text("Finding flights..."));
-                if (!snapshot.hasData)
-                  return Center(child: Text("Nothing here..."));
-                _hasInitialised = true;
-                return Column(
-                  children: [
-                    Expanded(
-                      child: ListView(
-                        shrinkWrap: true,
-                        controller: _scrollController,
-                        children: snapshot.data
-                            .map(
-                              (e) => FlightCard(
-                                flight: Flight.fromMap(e),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                    if (_isLoading)
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircularProgressIndicator(),
-                      )
-                  ],
-                );
-              },
-            ),
+            child: FutureBuilder<List<Flight>>(
+                future: _appMode.apiToUse.getFlights(
+                  currentList: _currentFlightList,
+                  docLimit: _docLimit,
+                  offset: _offset,
+                  callback: _callback,
+                  departureAirport: _myFlight.depAirport,
+                  arrivalAirport: _myFlight.arrAirport,
+                ),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting &&
+                      !_hasInitialised)
+                    return Center(child: Text("Finding flights..."));
+                  if (snapshot.hasData && snapshot.data.length != 0) {
+                    _hasInitialised = true;
+
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView(
+                            shrinkWrap: true,
+                            controller: _scrollController,
+                            children: snapshot.data
+                                .map(
+                                  (e) => FlightCard(
+                                    flight: e,
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+                        if (_isLoading)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircularProgressIndicator(),
+                          )
+                      ],
+                    );
+                  }
+                  return Center(child: Text("No flights found..."));
+                }),
           );
         },
       ),

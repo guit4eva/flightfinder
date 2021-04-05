@@ -1,12 +1,13 @@
-class Flight {
+import 'package:flightfinder/models/airport.dart';
+import 'package:flutter/cupertino.dart';
+
+class Flight extends ChangeNotifier {
   final String name; // Name of Airline
   final String number; // Flight Number
-  final String
+  Airport
       depAirport; // Departure Airport Name (ie, 'San Francisco International')
-  final String depAirportIata; // Departure Airport IATA code (ie, 'DFW')
-  final String
+  Airport
       arrAirport; // Arrival Airport Name (ie, 'Dallas/Fort Worth International')
-  final String arrAirportIata; // Departure Airport IATA code (ie, 'SFO')
   final DateTime depTime; // Flight Departure Time
   final DateTime arrTime; // Flight Arrival Time
   final String icao; // Airline company code
@@ -15,9 +16,7 @@ class Flight {
     this.name,
     this.number,
     this.depAirport,
-    this.depAirportIata,
     this.arrAirport,
-    this.arrAirportIata,
     this.depTime,
     this.arrTime,
     this.icao,
@@ -30,13 +29,28 @@ class Flight {
     return Flight(
       name: data['airline']['name'],
       number: data['flight']['number'],
-      depAirport: data['departure']['airport'],
-      depAirportIata: data['departure']['iata'],
-      arrAirport: data['arrival']['airport'],
-      arrAirportIata: data['arrival']['iata'],
+      depAirport:
+          data['departure'] != null ? Airport.fromMap(data['departure']) : null,
+      arrAirport:
+          data['arrival'] != null ? Airport.fromMap(data['arrival']) : null,
       depTime: DateTime.parse(data['departure']['scheduled']),
       arrTime: DateTime.parse(data['arrival']['scheduled']),
       icao: data['airline']['icao'],
     );
+  }
+  void updateDepartureAirport(Airport airport) {
+    depAirport = airport;
+    arrAirport = null; // Reset arrival airport
+    notifyListeners();
+  }
+
+  void updateArrivalAirport(Airport airport) {
+    arrAirport = airport;
+    notifyListeners();
+  }
+
+  void resetSelectedAirports() {
+    depAirport = null;
+    arrAirport = null;
   }
 }

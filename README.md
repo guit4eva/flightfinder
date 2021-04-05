@@ -15,12 +15,19 @@ A flutter app that displays local flight information from https://aviationstack.
 
 - [X] Fake/real data toggle function
 
-- [ ] Flight finder screen (including arrival and destination airport dropdowns)
+- [X] Flight finder screen (including arrival and destination airport dropdowns)
 
 - [X] Flights list screen with infinite scroll
 
-- [ ] Flight information screen (inlcuding airplane info, airports details and airlines info)
+- [ ] Flight information screen (including airplane info, airports details and airlines info)
 
-- [ ] Display flight route on map
+- [X] Display flight route on map
+
+- [ ] Add home button to appbar
+
+## Issues
+
 ## Notes
 - dummy_flight_data.json created from http://api.aviationstack.com/v1/flights?access_key=a39004f6dc73f46eceaa6d5375191b6d&limit=10000&dep_iata=JNB
+
+- aviationstack.com does not allow https connections on it's free plan. The following has been implemented to avoid Dio().get errors: https://stackoverflow.com/questions/64197752/bad-state-insecure-http-is-not-allowed-by-platform

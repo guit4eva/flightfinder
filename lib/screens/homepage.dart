@@ -1,7 +1,7 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/custom_elevated_button.dart';
-import 'package:flightfinder/screens/list_flights_screen.dart';
+import 'package:flightfinder/screens/query_flights.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -74,7 +74,7 @@ class Homepage extends StatelessWidget {
                             PageTransition(
                                 type: PageTransitionType.fade,
                                 // child: QueryFlightsScreen(),
-                                child: ListFlightsScreen()),
+                                child: QueryFlightsScreen()),
                           ),
                         )
                       ],

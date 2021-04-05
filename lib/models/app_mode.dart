@@ -14,7 +14,6 @@ class AppMode extends ChangeNotifier {
   void toggleMode() {
     _isTestMode = !_isTestMode;
     _isTestMode == true ? apiToUse = MockApi() : HttpApi();
-    print(_isTestMode);
     notifyListeners();
   }
 }

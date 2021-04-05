@@ -5,6 +5,7 @@
 class Misc {
   void easyDebug(Map<String, dynamic> toPrint) {
     print("############################");
+
     toPrint.forEach((k, v) {
       print('## $k: ' + v.toString());
     });

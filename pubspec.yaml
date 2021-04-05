@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.17.0 # Date Formatting
   flare_flutter: ^3.0.0 # Flare animations
   flutter_riverpod: ^0.13.1+1 # State management
+  google_maps_flutter: ^2.0.2 # Google Maps
   json_annotation: ^4.0.1 # JSON serialization and deserialization
   json_serializable: ^4.1.0 # Handle JSON
   page_transition: ^1.1.7+6 # Page Transitions

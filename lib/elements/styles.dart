@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
 class Styles {
-  TextStyle titleStyle = TextStyle(fontSize: 16.0);
+  TextStyle titleStyle = TextStyle(fontSize: 18.0);
 }

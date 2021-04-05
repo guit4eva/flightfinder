@@ -1,38 +1,44 @@
 [
     {
-        "airport_name": "Cape Town International",
-        "city_iata_code": "CPT"
+        "airport": "Cape Town International",
+        "iata": "CPT",
+        "latitude": "-33.968906",
+        "longitude": "18.596489"
     },
     {
-        "airport_name": "Durban International",
-        "city_iata_code": "DUR"
+        "airport": "East London",
+        "iata": "ELS",
+        "latitude": "-26.132664",
+        "longitude": "28.231314"
     },
     {
-        "airport_name": "East London",
-        "city_iata_code": "ELS"
+        "airport": "George",
+        "iata": "GRJ",
+        "latitude": "-26.132664",
+        "longitude": "28.231314"
     },
     {
-        "airport_name": "Grand Central",
-        "city_iata_code": "JNB"
+        "airport": "King Shaka International",
+        "iata": "DUR",
+        "latitude": "-26.132664",
+        "longitude": "28.231314"
     },
     {
-        "airport_name": "George",
-        "city_iata_code": "GRJ"
+        "airport": "Lanseria",
+        "iata": "HLA",
+        "latitude": "-26.132664",
+        "longitude": "28.231314"
     },
     {
-        "airport_name": "Lanseria",
-        "city_iata_code": "JNB"
+        "airport": "OR Tambo International",
+        "iata": "JNB",
+        "latitude": "-26.132664",
+        "longitude": "28.231314"
     },
     {
-        "airport_name": "OR Tambo International",
-        "city_iata_code": "JNB"
-    },
-    {
-        "airport_name": "Port Elizabeth",
-        "city_iata_code": "PLZ"
-    },
-    {
-        "airport_name": "Virginia",
-        "city_iata_code": "DUR"
+        "airport": "Port Elizabeth",
+        "iata": "PLZ",
+        "latitude": "-26.132664",
+        "longitude": "28.231314"
     }
 ]

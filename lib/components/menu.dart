@@ -1,16 +1,16 @@
-import 'package:flightfinder/main.dart';
+import 'package:flightfinder/misc/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Consumer(
-          builder: (context, watch, child) {
-            final _isTestMode = watch(isTestMode);
-            return ElevatedButton(
+    return Consumer(
+      builder: (context, watch, child) {
+        final _isTestMode = watch(isTestMode);
+        return Column(
+          children: [
+            ElevatedButton(
               style: ElevatedButton.styleFrom(
                   primary: _isTestMode.isTestMode ? Colors.blue : Colors.red),
               child: Text(
@@ -21,14 +21,26 @@ class Menu extends StatelessWidget {
               onPressed: () {
                 context.read(isTestMode).toggleMode();
               },
-            );
-          },
-          // builder
-          //         child: ElevatedButton(onPressed: () {
+              // builder
+              //         child: ElevatedButton(onPressed: () {
 
-          // }, child: Text()),
-        )
-      ],
+              // }, child: Text()),
+            ),
+            if (_isTestMode.isTestMode)
+              Column(
+                children: [
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "NB: When querying flights in test mode, use:\n\nFrom: JNB\nTo: CPT or DUR",
+                    ),
+                  ),
+                ],
+              )
+          ],
+        );
+      },
     );
   }
 }

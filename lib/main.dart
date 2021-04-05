@@ -3,7 +3,7 @@
 //
 //  - To switch between Mock and Real API, use toggle button in the menu
 // =============================================================================
-import 'package:flightfinder/models/app_mode.dart';
+import 'package:flightfinder/misc/globals.dart';
 import 'package:flightfinder/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,9 +15,6 @@ void main() {
     ),
   );
 }
-
-// toggle between test and production mode
-final isTestMode = ChangeNotifierProvider<AppMode>((ref) => AppMode());
 
 class MyApp extends StatelessWidget {
   @override
