@@ -1,5 +1,6 @@
 import 'package:flightfinder/components/custom_dialog.dart';
 import 'package:flightfinder/components/menu.dart';
+import 'package:flightfinder/components/return_home_btn.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,6 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: Icon(Icons.menu),
           ),
         ),
+        if (isHomepage != true) HomeBtn(),
       ],
     );
   }

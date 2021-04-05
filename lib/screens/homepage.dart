@@ -40,6 +40,9 @@ class Homepage extends StatelessWidget {
                 ],
               ),
             ),
+            // -----------------------------------------------------------------
+            // Animated Plane Flare
+            // -----------------------------------------------------------------
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +76,6 @@ class Homepage extends StatelessWidget {
                             context,
                             PageTransition(
                                 type: PageTransitionType.fade,
-                                // child: QueryFlightsScreen(),
                                 child: QueryFlightsScreen()),
                           ),
                         )

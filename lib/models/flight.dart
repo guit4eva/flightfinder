@@ -33,8 +33,12 @@ class Flight extends ChangeNotifier {
           data['departure'] != null ? Airport.fromMap(data['departure']) : null,
       arrAirport:
           data['arrival'] != null ? Airport.fromMap(data['arrival']) : null,
-      depTime: DateTime.parse(data['departure']['scheduled']),
-      arrTime: DateTime.parse(data['arrival']['scheduled']),
+      depTime: data['departure']['scheduled'] != null
+          ? DateTime.parse(data['departure']['scheduled'])
+          : null,
+      arrTime: data['arrival']['scheduled'] != null
+          ? DateTime.parse(data['arrival']['scheduled'])
+          : null,
       icao: data['airline']['icao'],
     );
   }

@@ -30,10 +30,11 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             scaffoldBackgroundColor: Color(0xFF2367B4),
             appBarTheme: AppBarTheme(
-                color: Colors.transparent,
-                elevation: 0,
-                shadowColor: Colors.transparent,
-                iconTheme: IconThemeData(color: Colors.white)),
+              color: Colors.transparent,
+              elevation: 0,
+              shadowColor: Colors.transparent,
+              iconTheme: IconThemeData(color: Colors.white),
+            ),
           ),
           home: Homepage(),
         );

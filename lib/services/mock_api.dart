@@ -13,6 +13,7 @@ class MockApi implements Api {
   // Get Airports
   // ---------------------------------------------------------------------------
   Future<List<Airport>> getAirports() async {
+    print("USING MOCK API");
     var _json = await rootBundle.loadString('assets/json/airports.json');
     List<dynamic> _airportData = jsonDecode(_json);
     List<Airport> _airportList = [];
@@ -68,7 +69,6 @@ class MockApi implements Api {
     // -------------------------------------------------------------------------
     // Add flight data to currentList
     // -------------------------------------------------------------------------
-    print(departureAirport.iataCode);
     for (var i = offset; i < docsToFetch; i++) {
       Flight _flight = Flight.fromMap(_flightData[i]);
       if (_flight.depAirport.iataCode == departureAirport.iataCode &&

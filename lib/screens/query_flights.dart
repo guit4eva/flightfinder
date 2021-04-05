@@ -5,7 +5,6 @@ import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/custom_elevated_button.dart';
 import 'package:flightfinder/components/small_header.dart';
 import 'package:flightfinder/misc/globals.dart';
-import 'package:flightfinder/misc/nice_print.dart';
 import 'package:flightfinder/models/airport.dart';
 import 'package:flightfinder/screens/list_flights_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +20,13 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
   Future<List<Airport>> _airportsFuture;
   @override
   void initState() {
+    // -------------------------------------------------------------------------
+    // Check whether to use Mock or Real API
+    // -------------------------------------------------------------------------
     _airportsFuture = context.read(isTestMode).apiToUse.getAirports();
-    context
-        .read(selectedFlightDetails)
-        .resetSelectedAirports(); // Prevents dropdown duplicate error: https://i.stack.imgur.com/nX0PJ.png
+    // Reset Airports
+    // ... prevents dropdown duplicate error: https://i.stack.imgur.com/nX0PJ.png
+    context.read(selectedFlightDetails).resetSelectedAirports();
     super.initState();
   }
 
@@ -42,7 +44,6 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
           if (snapshot.hasData) {
             List<Airport> _depAirports = snapshot.data;
             List<Airport> _arrAirports = snapshot.data;
-            Misc().easyDebug({'dep': _depAirports, 'arr': _arrAirports});
             return Consumer(
               builder: (context, watch, child) {
                 final _myFlight = watch(selectedFlightDetails);
@@ -118,6 +119,7 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
   }
 }
 
+// TODO: Remove departure flight from arrival flight options
 class DropdownContainer extends StatelessWidget {
   final List<Airport> airports;
   final Function callback;

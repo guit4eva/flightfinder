@@ -5,7 +5,6 @@
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/flight_card.dart';
 import 'package:flightfinder/misc/globals.dart';
-import 'package:flightfinder/misc/nice_print.dart';
 import 'package:flightfinder/models/flight.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,15 +38,6 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
         setState(() {
           _isLoading = true;
         });
-        // Simulate network loading times
-        // TODO: Remove in production or move to testing class
-        Future.delayed(Duration(seconds: 1), () {
-          setState(() {
-            _offset = _offset + _docLimit;
-            _isLoading = false;
-            Misc().easyDebug({'docLimit': _docLimit, 'offset': _offset});
-          });
-        });
       }
     });
   }
@@ -77,7 +67,6 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
                     return Center(child: Text("Finding flights..."));
                   if (snapshot.hasData && snapshot.data.length != 0) {
                     _hasInitialised = true;
-
                     return Column(
                       children: [
                         Expanded(
@@ -110,8 +99,9 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
   }
 
   void _callback(currentList, endOfData) {
-    _currentFlightList = currentList;
-    if (endOfData) _endOfData = true;
-    print(endOfData);
+    // print(currentList);
+    // _currentFlightList = currentList;
+    // if (endOfData) _endOfData = true;
+    _isLoading = false;
   }
 }

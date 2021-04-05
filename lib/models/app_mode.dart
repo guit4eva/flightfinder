@@ -4,16 +4,16 @@ import 'package:flutter/foundation.dart';
 
 class AppMode extends ChangeNotifier {
   static bool _isTestMode = false;
-  var apiToUse = MockApi();
 
   get isTestMode => _isTestMode;
+
+  get apiToUse => _isTestMode == true ? MockApi() : HttpApi();
 
 // -----------------------------------------------------------------------------
 // Toggle between test and production mode
 // -----------------------------------------------------------------------------
   void toggleMode() {
     _isTestMode = !_isTestMode;
-    _isTestMode == true ? apiToUse = MockApi() : HttpApi();
     notifyListeners();
   }
 }
