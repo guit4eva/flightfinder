@@ -3,7 +3,7 @@ A flutter app that displays local flight information from https://aviationstack.
 
 ## Preview
 
-[Video](https://user-images.githubusercontent.com/7669879/113629979-785b9d80-9667-11eb-87a5-30c8d4ace808.mp4)
+[Watch video](https://user-images.githubusercontent.com/7669879/113629979-785b9d80-9667-11eb-87a5-30c8d4ace808.mp4)
 ## Features
 
 - Displays a list of flights in your area, including departure time, arrival time, the airline and the flight number.
@@ -27,7 +27,7 @@ A flutter app that displays local flight information from https://aviationstack.
 
 - [X] Display flight route on map
 
-- [ ] Add home button to appbar
+- [X] Add home button to appbar
 
 ## Issues
 
