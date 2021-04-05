@@ -38,7 +38,7 @@ class HttpApi implements Api {
     int docsToFetch;
     List<Flight> _flights;
     final String _apiKey =
-        '7edeaf4a7696a7302e078656755e1644'; //TODO: Load API key securely
+        'a1eb5283573a99d195a2977c6faecc09'; //TODO: Load API key securely
 
     final String _flightsBaseUri =
         'http://api.aviationstack.com/v1/flights?access_key=$_apiKey';
