@@ -1,6 +1,8 @@
 # Flight Finder
 A flutter app that displays local flight information from https://aviationstack.com
 
+## Preview Video
+
 https://user-images.githubusercontent.com/7669879/113629979-785b9d80-9667-11eb-87a5-30c8d4ace808.mp4
 
 ## Features
