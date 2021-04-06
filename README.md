@@ -3,7 +3,7 @@ A flutter app that displays local flight information from https://aviationstack.
 
 ## Preview
 
-[Watch video](https://user-images.githubusercontent.com/7669879/113629979-785b9d80-9667-11eb-87a5-30c8d4ace808.mp4)
+[Try Web Version](http://flightfinder.tk)
 ## Features
 
 - Displays a list of flights in your area, including departure time, arrival time, the airline and the flight number.
