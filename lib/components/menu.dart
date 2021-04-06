@@ -14,9 +14,7 @@ class Menu extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   primary: _isTestMode.isTestMode ? Colors.blue : Colors.red),
               child: Text(
-                _isTestMode.isTestMode
-                    ? 'Switch to production mode'
-                    : 'Switch to test mode',
+                'Switch',
               ),
               onPressed: () {
                 context.read(isTestMode).toggleMode();
@@ -25,6 +23,18 @@ class Menu extends StatelessWidget {
               //         child: ElevatedButton(onPressed: () {
 
               // }, child: Text()),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text("Currently using:"),
+                  Text(
+                    "${_isTestMode.isTestMode ? 'MOCK API' : 'REAL API'}",
+                    style: TextStyle(fontWeight: FontWeight.w900),
+                  )
+                ],
+              ),
             ),
             if (_isTestMode.isTestMode)
               Column(

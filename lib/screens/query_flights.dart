@@ -58,7 +58,7 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
                             // -------------------------------------------------
                             Column(
                               children: [
-                                SmallHeader(text: "I'm flying from"),
+                                SmallHeader(text: "Departing from:"),
                                 DropdownContainer(
                                   airports: _depAirports,
                                   selectedValue: _myFlight.depAirport,
@@ -74,7 +74,7 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
                             if (_myFlight.depAirport != null)
                               Column(
                                 children: [
-                                  SmallHeader(text: "to"),
+                                  SmallHeader(text: "Arriving at:"),
                                   DropdownContainer(
                                     airports: _arrAirports,
                                     selectedValue: _myFlight.arrAirport,
@@ -90,8 +90,13 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
                                 width: MediaQuery.of(context).size.width / 1.4,
                                 child: Column(
                                   children: [
+                                    SizedBox(
+                                      height: 12.0,
+                                    ),
                                     CustomElevatedButton(
-                                      label: 'Ready to fly!',
+                                      label: "Show Flights",
+                                      bgColor: Theme.of(context)
+                                          .secondaryHeaderColor,
                                       onPressed: () => Navigator.push(
                                         context,
                                         PageTransition(

@@ -8,92 +8,108 @@ import 'package:page_transition/page_transition.dart';
 class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        isHomepage: true,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            // -----------------------------------------------------------------
-            // Logo
-            // -----------------------------------------------------------------
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 32.0, horizontal: 8.0),
-              child: Column(
-                children: [
-                  Text(
-                    "Flight Finder",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: 'Titan', fontSize: 46.0),
-                  ),
-                  Text(
-                    "Explore the world",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Titan',
-                      fontSize: 22.0,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // -----------------------------------------------------------------
-            // Animated Plane Flare
-            // -----------------------------------------------------------------
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // -----------------------------------------------------------
-                  // Animated Plane Flare
-                  // -----------------------------------------------------------
-                  Container(
-                    width: MediaQuery.of(context).size.width / 1.2,
-                    height: 100,
-                    child: FlareActor("assets/flares/plane.flr",
-                        alignment: Alignment.center,
-                        fit: BoxFit.contain,
-                        animation: "play"),
-                  ),
-                  SizedBox(
-                    height: 22.0,
-                  ),
-                  // -----------------------------------------------------------
-                  // "Ready to fly" button
-                  // -----------------------------------------------------------
-                  Container(
-                    width: MediaQuery.of(context).size.width / 1.4,
-                    child: Column(
-                      children: [
-                        CustomElevatedButton(
-                          label: "Ready to fly!",
-                          bgColor: Color(0xFF804004),
-                          textColor: Colors.white,
-                          onPressed: () => Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.fade,
-                                child: QueryFlightsScreen()),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // -----------------------------------------------------------------
-            // Cloud Image Footer
-            // -----------------------------------------------------------------
-            Image.asset(
-              'assets/img/general/cloud_footer.png',
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF0C396D),
+            Color(0xFF5E95D4),
           ],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: CustomAppBar(
+          isHomepage: true,
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              // -----------------------------------------------------------------
+              // Logo
+              // -----------------------------------------------------------------
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 32.0, horizontal: 8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      "Flight Finder",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontFamily: 'Titan',
+                          fontSize: 46.0),
+                    ),
+                    Text(
+                      "Realtime flight information",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Titan',
+                        fontSize: 22.0,
+                        color: Colors.white54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // -----------------------------------------------------------------
+              // Animated Plane Flare
+              // -----------------------------------------------------------------
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // -----------------------------------------------------------
+                    // Animated Plane Flare
+                    // -----------------------------------------------------------
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      height: 100,
+                      child: FlareActor("assets/flares/plane.flr",
+                          alignment: Alignment.center,
+                          fit: BoxFit.contain,
+                          animation: "play"),
+                    ),
+                    SizedBox(
+                      height: 22.0,
+                    ),
+                    // -----------------------------------------------------------
+                    // "Ready to fly" button
+                    // -----------------------------------------------------------
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: Column(
+                        children: [
+                          CustomElevatedButton(
+                            label: "START",
+                            bgColor: Theme.of(context).secondaryHeaderColor,
+                            textColor: Colors.white,
+                            onPressed: () => Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: QueryFlightsScreen()),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // -----------------------------------------------------------------
+              // Cloud Image Footer
+              // -----------------------------------------------------------------
+              Image.asset(
+                'assets/img/general/cloud_footer.webp',
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
+              ),
+            ],
+          ),
         ),
       ),
     );

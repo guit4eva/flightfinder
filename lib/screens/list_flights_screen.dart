@@ -4,6 +4,7 @@
 
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/flight_card.dart';
+import 'package:flightfinder/components/no_data.dart';
 import 'package:flightfinder/misc/globals.dart';
 import 'package:flightfinder/models/flight.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,12 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting &&
                       !_hasInitialised)
-                    return Center(child: Text("Finding flights..."));
+                    return Center(
+                      child: Text(
+                        "Finding flights...",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    );
                   if (snapshot.hasData && snapshot.data.length != 0) {
                     _hasInitialised = true;
                     return Column(
@@ -90,7 +96,7 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
                       ],
                     );
                   }
-                  return Center(child: Text("No flights found..."));
+                  return NoData();
                 }),
           );
         },

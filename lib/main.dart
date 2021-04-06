@@ -28,7 +28,13 @@ class MyApp extends StatelessWidget {
               testMode.isTestMode, // Show debug banner in test mode
           theme: ThemeData(
             primarySwatch: Colors.blue,
-            scaffoldBackgroundColor: Color(0xFF2367B4),
+            primaryColor: Color(0xFFDA9310),
+            secondaryHeaderColor: Color(0xFF70431E),
+            scaffoldBackgroundColor: Color(0xFF2A67AD),
+            textTheme: TextTheme(
+              bodyText1: TextStyle(color: Colors.white),
+              bodyText2: TextStyle(color: Colors.white),
+            ),
             appBarTheme: AppBarTheme(
               color: Colors.transparent,
               elevation: 0,
