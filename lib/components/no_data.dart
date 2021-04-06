@@ -1,3 +1,7 @@
+// =============================================================================
+// No data available
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 class NoData extends StatelessWidget {

@@ -1,7 +1,7 @@
 // =============================================================================
 // NOTES:
 //
-//  - To switch between Mock and Real API, use toggle button in the menu
+//  - To switch between Mock and Real API, use toggle button in the app's menu
 // =============================================================================
 import 'package:flightfinder/misc/globals.dart';
 import 'package:flightfinder/screens/homepage.dart';

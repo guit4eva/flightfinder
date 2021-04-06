@@ -19,10 +19,6 @@ class Menu extends StatelessWidget {
               onPressed: () {
                 context.read(isTestMode).toggleMode();
               },
-              // builder
-              //         child: ElevatedButton(onPressed: () {
-
-              // }, child: Text()),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
