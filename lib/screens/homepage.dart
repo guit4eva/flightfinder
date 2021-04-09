@@ -59,7 +59,6 @@ class Homepage extends StatelessWidget {
               // -----------------------------------------------------------------
               // Animated Plane Flare
               // -----------------------------------------------------------------
-
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +85,6 @@ class Homepage extends StatelessWidget {
                     // -----------------------------------------------------------
                     // "Ready to fly" button
                     // -----------------------------------------------------------
-
                     Container(
                       width: MediaQuery.of(context).size.width / 1.4,
                       child: Column(

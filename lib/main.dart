@@ -11,13 +11,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context) => ProviderScope(
-        child: MyApp(),
-      ),
-    ),
-  );
+      // DevicePreview(
+      //   enabled: true,
+      //   builder: (context) => ProviderScope(
+      //     child: MyApp(),
+      //   ),
+      // ),
+      ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -45,8 +47,8 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white),
           ),
         ),
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
+        // locale: DevicePreview.locale(context),
+        // builder: DevicePreview.appBuilder,
         home: Homepage(),
       );
     });
