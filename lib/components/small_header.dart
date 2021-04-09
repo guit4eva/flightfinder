@@ -4,8 +4,8 @@ class SmallHeader extends StatelessWidget {
   final String text;
 
   const SmallHeader({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

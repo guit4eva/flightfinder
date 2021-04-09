@@ -5,11 +5,8 @@ import 'package:flutter/material.dart';
 
 class HomeBtn extends StatelessWidget {
   const HomeBtn({
-    Key key,
-    this.confirmHome,
+    Key? key,
   }) : super(key: key);
-
-  final bool confirmHome;
 
   @override
   Widget build(BuildContext context) {

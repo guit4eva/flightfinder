@@ -4,11 +4,11 @@ import 'package:flightfinder/models/flight.dart';
 abstract class Api {
   Future<List<Airport>> getAirports();
   Future<List<Flight>> getFlights({
-    List<Flight> currentList,
-    int docLimit,
-    int offset,
-    Function callback,
-    Airport departureAirport,
-    Airport arrivalAirport,
+    required List<Flight> currentList,
+    required int docLimit,
+    required int offset,
+    required Function callback,
+    required Airport departureAirport,
+    required Airport arrivalAirport,
   });
 }

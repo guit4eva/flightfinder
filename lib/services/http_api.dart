@@ -16,27 +16,26 @@ class HttpApi implements Api {
     var _json = await rootBundle.loadString('assets/json/airports.json');
     List<dynamic> _airportData = jsonDecode(_json);
     List<Airport> _airportList = [];
-    if (_airportData != null) {
-      _airportData.forEach((e) {
-        _airportList.add(Airport.fromMap(e));
-      });
-    }
+
+    _airportData.forEach((e) {
+      _airportList.add(Airport.fromMap(e));
+    });
     return _airportList;
   }
 
   Future<List<Flight>> getFlights({
-    List<Flight> currentList,
-    int docLimit,
-    int offset,
-    Function callback,
-    Airport departureAirport,
-    Airport arrivalAirport,
+    required List<Flight> currentList,
+    required int docLimit,
+    required int offset,
+    required Function callback,
+    required Airport departureAirport,
+    required Airport arrivalAirport,
   }) async {
-    docLimit = docLimit ?? 1;
-    offset = offset ?? 1;
-    currentList = currentList ?? [];
+    docLimit = docLimit;
+    offset = offset;
+    currentList = currentList;
     int docsToFetch;
-    List<Flight> _flights;
+    final List<Flight> _flights = [];
     final String _apiKey =
         'a1eb5283573a99d195a2977c6faecc09'; //TODO: Load API key securely
 
@@ -65,12 +64,12 @@ class HttpApi implements Api {
     // -------------------------------------------------------------------------
     for (var i = offset; i < docsToFetch; i++) {
       Flight _flight = Flight.fromMap(_flightData[i]);
-      if (_flight.depAirport.iataCode == departureAirport.iataCode &&
-          _flight.arrAirport.iataCode == arrivalAirport.iataCode)
+      if (_flight.depAirport!.iataCode == departureAirport.iataCode &&
+          _flight.arrAirport!.iataCode == arrivalAirport.iataCode)
         currentList.add(_flight);
     }
     // TODO: Sorting needs work here - results are not loaded chronologically with the infinite scroll
-    currentList.sort((a, b) => a.depTime.compareTo(b.depTime));
+    currentList.sort((a, b) => a.depTime!.compareTo(b.depTime!));
     callback(currentList, docsToFetch < docLimit);
     return currentList;
   }

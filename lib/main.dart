@@ -19,32 +19,30 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, watch, child) {
-        final testMode = watch(isTestMode);
-        return MaterialApp(
-          title: 'Flight Finder',
-          debugShowCheckedModeBanner:
-              testMode.isTestMode, // Show debug banner in test mode
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            primaryColor: Color(0xFFDA9310),
-            secondaryHeaderColor: Color(0xFF70431E),
-            scaffoldBackgroundColor: Color(0xFF2A67AD),
-            textTheme: TextTheme(
-              bodyText1: TextStyle(color: Colors.white),
-              bodyText2: TextStyle(color: Colors.white),
-            ),
-            appBarTheme: AppBarTheme(
-              color: Colors.transparent,
-              elevation: 0,
-              shadowColor: Colors.transparent,
-              iconTheme: IconThemeData(color: Colors.white),
-            ),
+    return Consumer(builder: (context, watch, child) {
+      final testMode = watch(isTestMode);
+      return MaterialApp(
+        title: 'Flight Finder',
+        debugShowCheckedModeBanner:
+            testMode.isTestMode, // Show debug banner in test mode
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          primaryColor: Color(0xFFDA9310),
+          secondaryHeaderColor: Color(0xFF70431E),
+          scaffoldBackgroundColor: Color(0xFF2A67AD),
+          textTheme: TextTheme(
+            bodyText1: TextStyle(color: Colors.grey.shade700),
+            bodyText2: TextStyle(color: Colors.grey.shade700),
           ),
-          home: Homepage(),
-        );
-      },
-    );
+          appBarTheme: AppBarTheme(
+            color: Colors.transparent,
+            elevation: 0,
+            shadowColor: Colors.transparent,
+            iconTheme: IconThemeData(color: Colors.white),
+          ),
+        ),
+        home: Homepage(),
+      );
+    });
   }
 }

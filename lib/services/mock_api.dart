@@ -17,11 +17,9 @@ class MockApi implements Api {
     var _json = await rootBundle.loadString('assets/json/airports.json');
     List<dynamic> _airportData = jsonDecode(_json);
     List<Airport> _airportList = [];
-    if (_airportData != null) {
-      _airportData.forEach((e) {
-        _airportList.add(Airport.fromMap(e));
-      });
-    }
+    _airportData.forEach((e) {
+      _airportList.add(Airport.fromMap(e));
+    });
     return _airportList;
   }
 
@@ -29,18 +27,18 @@ class MockApi implements Api {
   // Query Flights
   // ---------------------------------------------------------------------------
   Future<List<Flight>> getFlights({
-    List<Flight> currentList,
-    int docLimit,
-    int offset,
-    Function callback,
-    Airport departureAirport,
-    Airport arrivalAirport,
+    required List<Flight> currentList,
+    required int docLimit,
+    required int offset,
+    required Function callback,
+    Airport? departureAirport,
+    Airport? arrivalAirport,
   }) async {
-    docLimit = docLimit ?? 1;
-    offset = offset ?? 1;
-    currentList = currentList ?? [];
+    docLimit = docLimit;
+    offset = offset;
+    currentList = currentList;
     int docsToFetch;
-    List<Flight> _flights;
+    List<Flight> _flights = [];
     // -------------------------------------------------------------------------
     // Debug information
     // -------------------------------------------------------------------------
@@ -71,12 +69,12 @@ class MockApi implements Api {
     // -------------------------------------------------------------------------
     for (var i = offset; i < docsToFetch; i++) {
       Flight _flight = Flight.fromMap(_flightData[i]);
-      if (_flight.depAirport.iataCode == departureAirport.iataCode &&
-          _flight.arrAirport.iataCode == arrivalAirport.iataCode)
+      if (_flight.depAirport!.iataCode == departureAirport!.iataCode &&
+          _flight.arrAirport!.iataCode == arrivalAirport!.iataCode)
         currentList.add(_flight);
     }
 
-    currentList.sort((a, b) => a.depTime.compareTo(b.depTime));
+    currentList.sort((a, b) => a.depTime!.compareTo(b.depTime!));
     callback(currentList, docsToFetch < docLimit);
     return currentList;
   }

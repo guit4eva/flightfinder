@@ -41,5 +41,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+ <!-- allow HTTP requests globally -->
+ <!-- https://stackoverflow.com/questions/64197752/bad-state-insecure-http-is-not-allowed-by-platform -->
+	<key>NSAppTransportSecurity</key>
+		<dict>
+    	<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

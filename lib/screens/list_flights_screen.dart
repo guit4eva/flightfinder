@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ListFlightsScreen extends StatefulWidget {
   const ListFlightsScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -71,7 +71,7 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                     );
-                  if (snapshot.hasData && snapshot.data.length != 0) {
+                  if (snapshot.hasData && snapshot.data!.length != 0) {
                     _hasInitialised = true;
                     return Column(
                       children: [
@@ -79,7 +79,7 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
                           child: ListView(
                             shrinkWrap: true,
                             controller: _scrollController,
-                            children: snapshot.data
+                            children: snapshot.data!
                                 .map(
                                   (e) => FlightCard(
                                     flight: e,
@@ -105,9 +105,6 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
   }
 
   void _callback(currentList, endOfData) {
-    // print(currentList);
-    // _currentFlightList = currentList;
-    // if (endOfData) _endOfData = true;
     _isLoading = false;
   }
 }

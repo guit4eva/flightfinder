@@ -17,7 +17,7 @@ class QueryFlightsScreen extends StatefulWidget {
 }
 
 class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
-  Future<List<Airport>> _airportsFuture;
+  late Future<List<Airport>> _airportsFuture;
   @override
   void initState() {
     // -------------------------------------------------------------------------
@@ -25,7 +25,7 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
     // -------------------------------------------------------------------------
     _airportsFuture = context.read(isTestMode).apiToUse.getAirports();
     // Reset Airports
-    // ... prevents dropdown duplicate error: https://i.stack.imgur.com/nX0PJ.png
+    // > prevents dropdown duplicate error: https://i.stack.imgur.com/nX0PJ.png
     context.read(selectedFlightDetails).resetSelectedAirports();
     super.initState();
   }
@@ -42,8 +42,8 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
               child: Text("Loading..."),
             );
           if (snapshot.hasData) {
-            List<Airport> _depAirports = snapshot.data;
-            List<Airport> _arrAirports = snapshot.data;
+            List<Airport> _depAirports = snapshot.data!;
+            List<Airport> _arrAirports = snapshot.data!;
             return Consumer(
               builder: (context, watch, child) {
                 final _myFlight = watch(selectedFlightDetails);
@@ -128,13 +128,13 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
 class DropdownContainer extends StatelessWidget {
   final List<Airport> airports;
   final Function callback;
-  final Airport selectedValue;
+  final Airport? selectedValue;
 
   const DropdownContainer({
-    Key key,
-    @required this.airports,
-    @required this.callback,
-    @required this.selectedValue,
+    Key? key,
+    required this.airports,
+    required this.callback,
+    this.selectedValue,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -153,7 +153,7 @@ class DropdownContainer extends StatelessWidget {
                       value: airport,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(airport.name + ' (${airport.iataCode})'),
+                        child: Text(airport.name! + ' (${airport.iataCode})'),
                       ),
                     ),
                   )
@@ -164,7 +164,7 @@ class DropdownContainer extends StatelessWidget {
               ),
               value: selectedValue,
               underline: Offstage(),
-              onChanged: callback,
+              onChanged: callback as void Function(Airport?)?,
             ),
           ),
         ),

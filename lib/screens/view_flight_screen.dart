@@ -14,8 +14,8 @@ import 'package:intl/intl.dart';
 
 class ViewFlightScreen extends StatefulWidget {
   const ViewFlightScreen({
-    Key key,
-    @required this.flight,
+    Key? key,
+    required this.flight,
   }) : super(key: key);
 
   final Flight flight;
@@ -26,12 +26,12 @@ class ViewFlightScreen extends StatefulWidget {
 
 class _ViewFlightScreenState extends State<ViewFlightScreen> {
   Completer<GoogleMapController> _controller = Completer();
-  Set<Polyline> _polyline = Set();
-  Set<Marker> _allMarkers = Set();
+  late Set<Polyline> _polyline = Set();
+  late Set<Marker> _allMarkers = Set();
   bool _isLoading = true;
   String _loadingText = "Loading route...";
-  Airport _depAirport;
-  Airport _arrAirport;
+  late Airport _depAirport;
+  late Airport _arrAirport;
   @override
   void initState() {
     super.initState();
@@ -77,7 +77,7 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      '${widget.flight.depAirport.iataCode} (${DateFormat.Hm().format(widget.flight.depTime)})',
+                                      '${widget.flight.depAirport!.iataCode} (${DateFormat.Hm().format(widget.flight.depTime!)})',
                                       style: Styles().titleStyle,
                                     ),
                                     Padding(
@@ -89,7 +89,7 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
                                       ),
                                     ),
                                     Text(
-                                      '${widget.flight.arrAirport.iataCode} (${DateFormat.Hm().format(widget.flight.arrTime)})',
+                                      '${widget.flight.arrAirport!.iataCode} (${DateFormat.Hm().format(widget.flight.arrTime!)})',
                                       style: Styles().titleStyle,
                                       textAlign: TextAlign.center,
                                     ),
@@ -101,9 +101,9 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
                                   children: [
                                     // TODO: Add flight and airport details
                                     Text(
-                                        "Departs: ${DateFormat.yMMMd().format(widget.flight.depTime)}"),
+                                        "Departs: ${DateFormat.yMMMd().format(widget.flight.depTime!)}"),
                                     Text(
-                                        "Arrives: ${DateFormat.yMMMd().format(widget.flight.arrTime)}"),
+                                        "Arrives: ${DateFormat.yMMMd().format(widget.flight.arrTime!)}"),
                                     Text(
                                         "Flight: ${widget.flight.number} (${widget.flight.name})")
                                   ],
@@ -118,36 +118,35 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
                 ),
               ),
               SizedBox(height: 8.0),
-              if (_depAirport != null)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Departure Airport Information"),
-                            Text("... stay tuned")
-                          ],
-                        ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Departure Airport Information"),
+                          Text("... stay tuned")
+                        ],
                       ),
                     ),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Arrival Airport Information"),
-                            Text("... stay tuned")
-                          ],
-                        ),
+                  ),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Arrival Airport Information"),
+                          Text("... stay tuned")
+                        ],
                       ),
                     ),
-                  ],
-                )
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -166,14 +165,14 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
       // Departure Airport
       // -----------------------------------------------------------------------
       Response _depAirportJson = await Dio().get(
-          "$_baseUrl?iata=${flight.depAirport.iataCode}&key=$_apiKey&secret=$_apiSecret");
+          "$_baseUrl?iata=${flight.depAirport!.iataCode}&key=$_apiKey&secret=$_apiSecret");
       _depAirport = Airport.fromMap(_depAirportJson.data['airport']);
 
       // -----------------------------------------------------------------------
       // Airport Airport
       // -----------------------------------------------------------------------
       Response _arrAirportJson = await Dio().get(
-          "$_baseUrl?iata=${flight.arrAirport.iataCode}&key=$_apiKey&secret=$_apiSecret");
+          "$_baseUrl?iata=${flight.arrAirport!.iataCode}&key=$_apiKey&secret=$_apiSecret");
       _arrAirport = Airport.fromMap(_arrAirportJson.data['airport']);
       // -----------------------------------------------------------------------
       // Animate map to new position
@@ -182,7 +181,7 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
       controller.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
-            target: _depAirport.latLng,
+            target: _depAirport.latLng!,
             zoom: 3.4746,
           ),
         ),
@@ -202,12 +201,12 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
         Marker(
           markerId: MarkerId('departureAirport'),
           draggable: true,
-          position: _depAirport.latLng,
+          position: _depAirport.latLng!,
         ),
         Marker(
           markerId: MarkerId('arrivalAirport'),
           draggable: true,
-          position: _arrAirport.latLng,
+          position: _arrAirport.latLng!,
         ),
       ]);
       // -----------------------------------------------------------------------
@@ -218,8 +217,8 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
         width: 4,
         visible: true,
         points: [
-          _depAirport.latLng,
-          _arrAirport.latLng,
+          _depAirport.latLng!,
+          _arrAirport.latLng!,
         ],
         polylineId: PolylineId("route"),
       ));
@@ -236,12 +235,12 @@ class GMapContainer extends StatefulWidget {
   final String loadingText;
 
   const GMapContainer(
-      {Key key,
-      @required this.controller,
-      @required this.polyline,
-      @required this.allMarkers,
-      @required this.isLoading,
-      @required this.loadingText})
+      {Key? key,
+      required this.controller,
+      required this.polyline,
+      required this.allMarkers,
+      required this.isLoading,
+      required this.loadingText})
       : super(key: key);
 
   @override
@@ -264,8 +263,8 @@ class GMapContainerState extends State<GMapContainer> {
           onMapCreated: (GoogleMapController controller) {
             widget.controller.complete(controller);
           },
-          markers: Set.from(widget.allMarkers) ?? null,
-          polylines: widget.polyline ?? null,
+          markers: Set.from(widget.allMarkers),
+          polylines: widget.polyline,
         ),
         if (widget.isLoading)
           Container(

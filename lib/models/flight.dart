@@ -2,15 +2,15 @@ import 'package:flightfinder/models/airport.dart';
 import 'package:flutter/cupertino.dart';
 
 class Flight extends ChangeNotifier {
-  final String name; // Name of Airline
-  final String number; // Flight Number
-  Airport
+  final String? name; // Name of Airline
+  final String? number; // Flight Number
+  Airport?
       depAirport; // Departure Airport Name (ie, 'San Francisco International')
-  Airport
+  Airport?
       arrAirport; // Arrival Airport Name (ie, 'Dallas/Fort Worth International')
-  final DateTime depTime; // Flight Departure Time
-  final DateTime arrTime; // Flight Arrival Time
-  final String icao; // Airline company code
+  final DateTime? depTime; // Flight Departure Time
+  final DateTime? arrTime; // Flight Arrival Time
+  final String? icao; // Airline company code
 
   Flight({
     this.name,
@@ -22,9 +22,9 @@ class Flight extends ChangeNotifier {
     this.icao,
   });
 
-  factory Flight.fromMap(Map<dynamic, dynamic> data) {
+  factory Flight.fromMap(Map<dynamic, dynamic>? data) {
     if (data == null) {
-      return null;
+      throw "Something went wrong (flight.dart)";
     }
     return Flight(
       name: data['airline']['name'],

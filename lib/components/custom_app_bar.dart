@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
-    Key key,
+    Key? key,
     this.isHomepage,
   }) : super(key: key);
 
-  final bool isHomepage;
+  final bool? isHomepage;
 
   @override
   Widget build(BuildContext context) {

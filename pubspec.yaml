@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -30,7 +30,7 @@ dependencies:
   google_maps_flutter: ^2.0.2 # Google Maps
   json_annotation: ^4.0.1 # JSON serialization and deserialization
   json_serializable: ^4.1.0 # Handle JSON
-  page_transition: ^1.1.7+6 # Page Transitions
+  page_transition: 2.0.1-nullsafety.0 # Page Transitions
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,7 +40,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.12.1 # Generate files
+  # build_runner: ^1.12.1 # Generate files
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
