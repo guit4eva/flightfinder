@@ -25,6 +25,51 @@
 
   <title>flightfinder</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    /* Loading Spinner (Web splashscreen) */
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border: 6px solid ;
+    border-top: 6px solid rgb(89, 118, 145);
+    border-right: 6px solid white;
+    border-bottom: 6px solid rgb(89, 118, 145);
+    border-left: 6px solid white;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }</style>
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -94,5 +139,10 @@
       loadMainDartJs();
     }
   </script>
+  <!-- Loading spinner on intial page load -->
+ <div class="loading">
+  <div class="loader">
+  </div>
+</div>
 </body>
 </html>
