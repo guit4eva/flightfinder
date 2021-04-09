@@ -8,6 +8,7 @@ import 'package:page_transition/page_transition.dart';
 class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -41,14 +42,14 @@ class Homepage extends StatelessWidget {
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontFamily: 'Titan',
-                          fontSize: 46.0),
+                          fontSize: h > 512 ? 46.0 : 36),
                     ),
                     Text(
                       "Realtime flight information",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'Titan',
-                        fontSize: 22.0,
+                        fontSize: h > 512 ? 22.0 : 16.0,
                         color: Colors.white54,
                       ),
                     ),
@@ -58,6 +59,7 @@ class Homepage extends StatelessWidget {
               // -----------------------------------------------------------------
               // Animated Plane Flare
               // -----------------------------------------------------------------
+
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -65,20 +67,26 @@ class Homepage extends StatelessWidget {
                     // -----------------------------------------------------------
                     // Animated Plane Flare
                     // -----------------------------------------------------------
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      height: 100,
-                      child: FlareActor("assets/flares/plane.flr",
-                          alignment: Alignment.center,
-                          fit: BoxFit.contain,
-                          animation: "play"),
-                    ),
-                    SizedBox(
-                      height: 22.0,
-                    ),
+                    if (h > 512)
+                      Column(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            height: 100,
+                            child: FlareActor("assets/flares/plane.flr",
+                                alignment: Alignment.center,
+                                fit: BoxFit.contain,
+                                animation: "play"),
+                          ),
+                          SizedBox(
+                            height: 22.0,
+                          ),
+                        ],
+                      ),
                     // -----------------------------------------------------------
                     // "Ready to fly" button
                     // -----------------------------------------------------------
+
                     Container(
                       width: MediaQuery.of(context).size.width / 1.4,
                       child: Column(
