@@ -31,6 +31,8 @@ A flutter app that displays local flight information from https://aviationstack.
 
 ## Issues
 
+- device_preview does not run with null safety. Applied following hack until fix is released: https://github.com/aloisdeniel/flutter_device_preview/issues/114
+
 ## Notes
 - dummy_flight_data.json created from http://api.aviationstack.com/v1/flights?access_key=a39004f6dc73f46eceaa6d5375191b6d&limit=10000&dep_iata=JNB
 
