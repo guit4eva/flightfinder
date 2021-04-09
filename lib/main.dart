@@ -3,6 +3,7 @@
 //
 //  - To switch between Mock and Real API, use toggle button in the app's menu
 // =============================================================================
+import 'package:device_preview/device_preview.dart';
 import 'package:flightfinder/misc/globals.dart';
 import 'package:flightfinder/screens/homepage.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    ProviderScope(
-      child: MyApp(),
+    DevicePreview(
+      enabled: true,
+      builder: (context) => ProviderScope(
+        child: MyApp(),
+      ),
     ),
   );
 }
@@ -41,6 +45,8 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white),
           ),
         ),
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         home: Homepage(),
       );
     });

@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  device_preview: ^0.7.1 # Aspect Ratio Testing
   dio: ^4.0.0 # Http client
   intl: ^0.17.0 # Date Formatting
   flare_flutter: ^3.0.0 # Flare animations
