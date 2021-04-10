@@ -1,5 +1,6 @@
 import 'package:flightfinder/models/airport.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Flight extends ChangeNotifier {
   final String? name; // Name of Airline
@@ -11,6 +12,7 @@ class Flight extends ChangeNotifier {
   final DateTime? depTime; // Flight Departure Time
   final DateTime? arrTime; // Flight Arrival Time
   final String? icao; // Airline company code
+  final String? iata;
 
   Flight({
     this.name,
@@ -20,12 +22,13 @@ class Flight extends ChangeNotifier {
     this.depTime,
     this.arrTime,
     this.icao,
+    this.iata,
   });
 
-  factory Flight.fromMap(Map<dynamic, dynamic>? data) {
-    if (data == null) {
-      throw "Something went wrong (flight.dart)";
-    }
+  factory Flight.fromMap(Map<dynamic, dynamic> data) {
+    // if (data == null) {
+    //   throw "Something went wrong (flight.dart)";
+    // }
     return Flight(
       name: data['airline']['name'],
       number: data['flight']['number'],
@@ -40,15 +43,16 @@ class Flight extends ChangeNotifier {
           ? DateTime.parse(data['arrival']['scheduled'])
           : null,
       icao: data['airline']['icao'],
+      iata: data['airline']['iata'],
     );
   }
-  void updateDepartureAirport(Airport airport) {
+  void updateDepartureAirport(Airport? airport) {
     depAirport = airport;
-    arrAirport = null; // Reset arrival airport
+    // arrAirport = null; // Reset arrival airport
     notifyListeners();
   }
 
-  void updateArrivalAirport(Airport airport) {
+  void updateArrivalAirport(Airport? airport) {
     arrAirport = airport;
     notifyListeners();
   }
@@ -58,3 +62,6 @@ class Flight extends ChangeNotifier {
     arrAirport = null;
   }
 }
+
+final selectedFlightProvider =
+    ChangeNotifierProvider<Flight>((ref) => Flight());

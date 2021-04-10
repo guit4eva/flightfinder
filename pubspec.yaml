@@ -27,12 +27,9 @@ dependencies:
   dio: ^4.0.0 # Http client
   intl: ^0.17.0 # Date Formatting
   flare_flutter: ^3.0.0 # Flare animations
-  flutter_riverpod: ^0.13.1+1 # State management
-  google_maps_flutter: ^2.0.2 # Google Maps
-  json_annotation: ^4.0.1 # JSON serialization and deserialization
-  json_serializable: ^4.1.0 # Handle JSON
+  flutter_riverpod: ^0.14.0+1 # State management
+  google_maps_flutter: ^2.0.3 # Google Maps
   page_transition: 2.0.1-nullsafety.0 # Page Transitions
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

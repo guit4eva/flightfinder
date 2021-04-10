@@ -19,42 +19,25 @@ class FlightCard extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime _depDate = flight.depTime!;
     DateTime _arrDate = flight.arrTime!;
-    print(flight.depTime);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: ListTile(
-            // leading: Container(
-            //   width: 50,
-            //   child: Column(
-            //     children: [
-            //       // if (flight.icao != null && flight.icao.isNotEmpty)
-            //       //   Expanded(
-            //       //     child: Image.asset(
-            //       //       'assets/img/airlines/${flight.icao.toLowerCase()}.png',
-            //       //       errorBuilder: (BuildContext context, Object exception,
-            //       //           StackTrace stackTrace) {
-            //       //         return Icon(
-            //       //           Icons.flight,
-            //       //         );
-            //       //       },
-            //       //       fit: BoxFit.contain,
-            //       //     ),
-            //       //   ),
-            //       Expanded(
-            //         child: Icon(Icons.flight),
-            //       ),
-            //       SizedBox(
-            //         height: 14.0,
-            //       ),
-            //       Expanded(
-            //         child: Text(flight.number),
-            //       )
-            //     ],
-            //   ),
-            // ),
+            leading: Container(
+              width: 100,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      'http://pics.avs.io/200/200/${flight.iata}.png',
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              ),
+            ),
             title: Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [

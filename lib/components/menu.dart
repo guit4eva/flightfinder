@@ -1,4 +1,4 @@
-import 'package:flightfinder/misc/globals.dart';
+import 'package:flightfinder/models/app_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,7 +6,7 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, watch, child) {
-      final _isTestMode = watch(isTestMode);
+      final _isTestMode = watch(appModeProvider);
       return Column(
         children: [
           ElevatedButton(
@@ -16,7 +16,7 @@ class Menu extends StatelessWidget {
               'Switch',
             ),
             onPressed: () {
-              context.read(isTestMode).toggleMode();
+              context.read(appModeProvider).toggleMode();
             },
           ),
           Padding(

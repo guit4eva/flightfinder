@@ -3,34 +3,38 @@
 //
 //  - To switch between Mock and Real API, use toggle button in the app's menu
 // =============================================================================
+// import 'package:flightfinder/misc/globals.dart';
+// import 'package:flightfinder/models/app_mode.dart';
+// import 'package:flightfinder/models/flight.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:flightfinder/misc/globals.dart';
-import 'package:flightfinder/screens/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:flightfinder/models/app_mode.dart';
+import 'package:flightfinder/screens/homepage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-      // DevicePreview(
-      //   enabled: true,
-      //   builder: (context) => ProviderScope(
-      //     child: MyApp(),
-      //   ),
-      // ),
-      ProviderScope(
-    child: MyApp(),
-  ));
+    ////////////////
+    /// Test Aspect Ratios (Device Preview)
+    ///////////////
+    DevicePreview(
+      enabled: false,
+      builder: (context) => ProviderScope(
+        child: MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, watch, child) {
-      final testMode = watch(isTestMode);
+      final appMode = watch(appModeProvider);
       return MaterialApp(
         title: 'Flight Finder',
         debugShowCheckedModeBanner:
-            testMode.isTestMode, // Show debug banner in test mode
+            appMode.isTestMode, // Show debug banner in test mode
         theme: ThemeData(
           primarySwatch: Colors.blue,
           primaryColor: Color(0xFFDA9310),
@@ -47,8 +51,8 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white),
           ),
         ),
-        // locale: DevicePreview.locale(context),
-        // builder: DevicePreview.appBuilder,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         home: Homepage(),
       );
     });

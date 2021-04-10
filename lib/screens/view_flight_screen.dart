@@ -8,6 +8,7 @@ import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/elements/styles.dart';
 import 'package:flightfinder/models/airport.dart';
 import 'package:flightfinder/models/flight.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
@@ -59,14 +60,22 @@ class _ViewFlightScreenState extends State<ViewFlightScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                                height: 200.0,
-                                child: GMapContainer(
-                                  allMarkers: _allMarkers,
-                                  controller: _controller,
-                                  isLoading: _isLoading,
-                                  loadingText: _loadingText,
-                                  polyline: _polyline,
-                                )),
+                              height: 200.0,
+                              child: kIsWeb
+                                  ? Center(
+                                      child: Image.network(
+                                        'http://pics.avs.io/200/200/${widget.flight.iata}.png',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : GMapContainer(
+                                      allMarkers: _allMarkers,
+                                      controller: _controller,
+                                      isLoading: _isLoading,
+                                      loadingText: _loadingText,
+                                      polyline: _polyline,
+                                    ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(12.0),

@@ -4,8 +4,9 @@
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/custom_elevated_button.dart';
 import 'package:flightfinder/components/small_header.dart';
-import 'package:flightfinder/misc/globals.dart';
 import 'package:flightfinder/models/airport.dart';
+import 'package:flightfinder/models/app_mode.dart';
+import 'package:flightfinder/models/flight.dart';
 import 'package:flightfinder/screens/list_flights_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,10 +24,10 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
     // -------------------------------------------------------------------------
     // Check whether to use Mock or Real API
     // -------------------------------------------------------------------------
-    _airportsFuture = context.read(isTestMode).apiToUse.getAirports();
+    _airportsFuture = context.read(appModeProvider).apiToUse.getAirports();
     // Reset Airports
     // > prevents dropdown duplicate error: https://i.stack.imgur.com/nX0PJ.png
-    context.read(selectedFlightDetails).resetSelectedAirports();
+    context.read(selectedFlightProvider).resetSelectedAirports();
     super.initState();
   }
 
@@ -46,7 +47,7 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
             List<Airport> _arrAirports = snapshot.data!;
             return Consumer(
               builder: (context, watch, child) {
-                final _myFlight = watch(selectedFlightDetails);
+                final _myFlight = watch(selectedFlightProvider);
                 return Center(
                   child: Column(
                     children: [
@@ -63,7 +64,7 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
                                   airports: _depAirports,
                                   selectedValue: _myFlight.depAirport,
                                   callback: (value) => context
-                                      .read(selectedFlightDetails)
+                                      .read(selectedFlightProvider)
                                       .updateDepartureAirport(value),
                                 ),
                               ],
@@ -79,7 +80,7 @@ class _QueryFlightsScreenState extends State<QueryFlightsScreen> {
                                     airports: _arrAirports,
                                     selectedValue: _myFlight.arrAirport,
                                     callback: (value) => context
-                                        .read(selectedFlightDetails)
+                                        .read(selectedFlightProvider)
                                         .updateArrivalAirport(value),
                                   ),
                                   SizedBox(height: 10.0),

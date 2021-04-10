@@ -5,7 +5,7 @@
 import 'package:flightfinder/components/custom_app_bar.dart';
 import 'package:flightfinder/components/flight_card.dart';
 import 'package:flightfinder/components/no_data.dart';
-import 'package:flightfinder/misc/globals.dart';
+import 'package:flightfinder/models/app_mode.dart';
 import 'package:flightfinder/models/flight.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,55 +49,56 @@ class _ListFlightsScreenState extends State<ListFlightsScreen> {
       appBar: CustomAppBar(),
       body: Consumer(
         builder: (context, watch, child) {
-          final _appMode = watch(isTestMode);
-          final _myFlight = watch(selectedFlightDetails);
+          final _appMode = watch(appModeProvider);
+          final _myFlight = watch(selectedFlightProvider);
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: FutureBuilder<List<Flight>>(
-                future: _appMode.apiToUse.getFlights(
-                  currentList: _currentFlightList,
-                  docLimit: _docLimit,
-                  offset: _offset,
-                  callback: _callback,
-                  departureAirport: _myFlight.depAirport,
-                  arrivalAirport: _myFlight.arrAirport,
-                ),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting &&
-                      !_hasInitialised)
-                    return Center(
-                      child: Text(
-                        "Finding flights...",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    );
-                  if (snapshot.hasData && snapshot.data!.length != 0) {
-                    _hasInitialised = true;
-                    return Column(
-                      children: [
-                        Expanded(
-                          child: ListView(
-                            shrinkWrap: true,
-                            controller: _scrollController,
-                            children: snapshot.data!
-                                .map(
-                                  (e) => FlightCard(
-                                    flight: e,
-                                  ),
-                                )
-                                .toList(),
-                          ),
+              future: _appMode.apiToUse.getFlights(
+                currentList: _currentFlightList,
+                docLimit: _docLimit,
+                offset: _offset,
+                callback: _callback,
+                departureAirport: _myFlight.depAirport,
+                arrivalAirport: _myFlight.arrAirport,
+              ),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting &&
+                    !_hasInitialised)
+                  return Center(
+                    child: Text(
+                      "Finding flights...",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                if (snapshot.hasData && snapshot.data!.length != 0) {
+                  _hasInitialised = true;
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView(
+                          shrinkWrap: true,
+                          controller: _scrollController,
+                          children: snapshot.data!
+                              .map(
+                                (e) => FlightCard(
+                                  flight: e,
+                                ),
+                              )
+                              .toList(),
                         ),
-                        if (_isLoading)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(),
-                          )
-                      ],
-                    );
-                  }
-                  return NoData();
-                }),
+                      ),
+                      if (_isLoading)
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        )
+                    ],
+                  );
+                }
+                return NoData();
+              },
+            ),
           );
         },
       ),
