@@ -25,19 +25,21 @@ class FlightCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: ListTile(
-            leading: Container(
-              width: 100,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Image.network(
-                      'http://pics.avs.io/200/200/${flight.iata}.png',
-                      fit: BoxFit.cover,
+            leading: MediaQuery.of(context).size.width > 768
+                ? Container(
+                    width: 100,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Image.network(
+                            'http://pics.avs.io/200/200/${flight.iata}.png',
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      ],
                     ),
                   )
-                ],
-              ),
-            ),
+                : null,
             title: Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [

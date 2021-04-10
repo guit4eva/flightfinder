@@ -27,22 +27,10 @@ class Homepage extends StatelessWidget {
         appBar: CustomAppBar(
           isHomepage: true,
         ),
-        body: Center(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // -----------------------------------------------------------------
-              // Cloud Image Footer (background)
-              // -----------------------------------------------------------------
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Image.asset(
-                  'assets/img/general/cloud_footer.webp',
-                  fit: BoxFit.cover,
-                  width: w,
-                ),
-              ),
-              Column(
+        body: Column(
+          children: [
+            Expanded(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   // -----------------------------------------------------------------
@@ -76,22 +64,17 @@ class Homepage extends StatelessWidget {
                   // -----------------------------------------------------------
                   // Animated Plane Flare
                   // -----------------------------------------------------------
-                  if (h > 512)
-                    Column(
-                      children: [
-                        Container(
-                          width: w / 1.2,
-                          height: 100,
-                          child: FlareActor("assets/flares/plane.flr",
-                              alignment: Alignment.center,
-                              fit: BoxFit.contain,
-                              animation: "play"),
-                        ),
-                        SizedBox(
-                          height: 22.0,
-                        ),
-                      ],
-                    ),
+                  Container(
+                    width: w / 1.2,
+                    height: 100,
+                    child: FlareActor("assets/flares/plane.flr",
+                        alignment: Alignment.center,
+                        fit: BoxFit.contain,
+                        animation: "play"),
+                  ),
+                  SizedBox(
+                    height: 22.0,
+                  ),
                   // -----------------------------------------------------------
                   // "Ready to fly" button
                   // -----------------------------------------------------------
@@ -116,8 +99,16 @@ class Homepage extends StatelessWidget {
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+            // -----------------------------------------------------------------
+            // Cloud Image Footer (background)
+            // -----------------------------------------------------------------
+            Image.asset(
+              'assets/img/general/cloud_footer.webp',
+              fit: BoxFit.cover,
+              width: w,
+            ),
+          ],
         ),
       ),
     );
